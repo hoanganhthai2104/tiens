@@ -20,8 +20,7 @@ Cách dùng: Ngày 1-2 lần, mỗi lần 1 gói. Pha với nước ấm 60-70°
 `;
 
 // Fix: Use `process.env.API_KEY` to access the API key as per the guidelines.
-const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
-
+const ai = new GoogleGenAI({ apikey: import.meta.env.VITE_API_KEY });}
 const responseSchema = {
   type: Type.ARRAY,
   items: {
