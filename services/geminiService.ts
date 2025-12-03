@@ -19,7 +19,8 @@ Hệ xương khỏe mạnh mới phát triển tốt chiều cao: Tỷ lệ canx
 Cách dùng: Ngày 1-2 lần, mỗi lần 1 gói. Pha với nước ấm 60-70°C, hoặc trộn vào đồ ăn để ăn.
 `;
 
-const ai = new GoogleGenAI({ apiKey: process.env.API_KEY as string });
+// Fix: Use `process.env.API_KEY` to access the API key as per the guidelines.
+const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
 
 const responseSchema = {
   type: Type.ARRAY,
@@ -53,7 +54,8 @@ export const generateQuizQuestions = async (difficulty: Difficulty): Promise<Qui
     try {
         const response = await ai.models.generateContent({
             model: "gemini-2.5-flash",
-            contents: [{ parts: [{ text: prompt }] }],
+            // Fix: The `contents` property for a single text prompt should be a string.
+            contents: prompt,
             config: {
                 responseMimeType: "application/json",
                 responseSchema: responseSchema,
